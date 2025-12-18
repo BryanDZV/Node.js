@@ -1,0 +1,45 @@
+# --- DEPENDENCIAS ---
+# Nunca subir las librerías, se instalan con npm install
+node_modules/
+jspm_packages/
+
+# --- SEGURIDAD Y SECRETOS ---
+# Importante: No subir llaves de API o contraseñas
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+
+# --- COMPILACIÓN Y PRODUCCIÓN ---
+# Archivos generados automáticamente
+dist/
+build/
+.next/
+out/
+bin/
+obj/
+
+# --- LOGS Y CACHÉ ---
+# Registros de errores y archivos temporales
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+.stylelintcache
+.cache/
+tmp/
+
+# --- SISTEMA Y EDITORES ---
+# Archivos basura de Windows, Mac y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- PRUEBAS (Opcional) ---
+coverage/
