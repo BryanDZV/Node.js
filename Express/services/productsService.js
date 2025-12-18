@@ -29,10 +29,11 @@ const products = [
     stock: 22,
   },
 ];
+//funcion para get todo los productos
 export function getAllProduts() {
   return products;
 }
-
+//funcion para post
 export function createdProduct(productData) {
   const newProduct = {
     id: products.length > 0 ? products[products.length - 1].id + 1 : 1, //obtenemos el id del ultimo producto econtrado por indice algo como 0.id
@@ -40,4 +41,41 @@ export function createdProduct(productData) {
   };
   products.push(newProduct); //nuevo productos
   return newProduct;
+}
+//funcion para get por id
+export function getProductoById(id) {
+  const product = products.find((p) => p.id === id);
+  return product;
+}
+
+//funcion para update
+export function updateProduct(id, data) {
+  const producto = getProductoById(id);
+  if (!producto) {
+    return null;
+  }
+  if (data.name != undefined) {
+    producto.name = data.name;
+  }
+  if (data.price !== undefined) {
+    producto.price = data.price;
+  }
+
+  if (data.stock !== undefined) {
+    producto.stock = data.stock;
+  }
+
+  return producto;
+}
+
+//funcion para delete por id
+
+export function deletebyId(id) {
+  const index = products.findIndex((p) => p.id === id);
+  if (index === -1) {
+    return false;
+  } else {
+    products.splice(index, 1);
+    return true;
+  }
 }

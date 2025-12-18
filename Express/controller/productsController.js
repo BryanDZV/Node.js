@@ -1,5 +1,12 @@
-import { getAllProduts, createdProduct } from "../services/productsService.js";
+import {
+  getAllProduts,
+  createdProduct,
+  getProductoById,
+  updateProduct,
+  deletebyId,
+} from "../services/productsService.js";
 
+//funcion para get
 export function getProducts(req, res) {
   try {
     const allProducts = getAllProduts();
@@ -9,6 +16,18 @@ export function getProducts(req, res) {
   }
 }
 
+//funcion para get by id
+export function productById(req, res) {
+  const id = Number(req.params.id);
+  const product = getProductoById(id);
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).json({ message: "Producto no encontrado" });
+  }
+}
+
+//funcion pra post
 export function addProduct(req, res) {
   try {
     //logica para añadir producto
@@ -20,5 +39,34 @@ export function addProduct(req, res) {
     res.status(201).json(newProduct);
   } catch (error) {
     res.status(500).json({ message: "Error al crear el producto" });
+  }
+}
+
+//funcion para put
+export function update(req, res) {
+  try {
+    const id = Number(req.params.id);
+    const data = req.body;
+    const product = updateProduct(id, data);
+    if (!product) {
+      return res.status(404).json({ message: "Producto no encontrado" });
+    }
+
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: "no se pudo actualizar" });
+  }
+}
+//funcion para delete por id
+export function borrar(req, res) {
+  try {
+    const id = Number(req.params.id);
+    if (deletebyId(id)) {
+      res.status(200).json({ message: "borrado" });
+    } else {
+      res.status(404).json({ message: "no hay un producto con ese id" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "no se pudo borrar" });
   }
 }

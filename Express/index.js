@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(express.json()); // Para entender los cuerpos de las peticiones JSON
+app.use(express.json()); // Para entender los cuerpos de las peticiones JSON evitar undefind req.body
 
 // Rutas para decirle que hay la ruta de rpoductos a express
 app.use("/productos", productosRoutes);
